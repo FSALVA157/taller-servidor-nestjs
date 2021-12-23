@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Componente {
@@ -39,5 +39,13 @@ export class Componente {
     })
     dispositivo_id: number;
 
+    @CreateDateColumn()
+   fecha_alta: Date;
+
+   @UpdateDateColumn()
+   ultima_actualizacion:Date;
+
+   @DeleteDateColumn()
+   fecha_baja: Date;
 
 }

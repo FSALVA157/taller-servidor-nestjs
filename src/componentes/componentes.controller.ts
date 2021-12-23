@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Put } from '@nestjs/common';
 import { ComponentesService } from './componentes.service';
 import { CreateComponenteDto } from './dto/create-componente.dto';
 import { UpdateComponenteDto } from './dto/update-componente.dto';
@@ -9,26 +9,47 @@ export class ComponentesController {
 
   @Post()
   create(@Body() createComponenteDto: CreateComponenteDto) {
-    return this.componentesService.create(createComponenteDto);
+    try {
+      return this.componentesService.createOne(createComponenteDto);      
+    } catch (error) {
+      throw new BadRequestException(error.message);
+      
+    }
   }
 
   @Get()
   findAll() {
-    return this.componentesService.findAll();
+    try {
+      return this.componentesService.findAll();      
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.componentesService.findOne(+id);
+    try {
+      return this.componentesService.findOne(+id);      
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateComponenteDto: UpdateComponenteDto) {
-    return this.componentesService.update(+id, updateComponenteDto);
+    try {
+      return this.componentesService.update(+id, updateComponenteDto);      
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.componentesService.remove(+id);
+    try {
+      return this.componentesService.remove(+id);      
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 }

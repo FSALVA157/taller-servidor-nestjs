@@ -10,6 +10,9 @@ import { TipoDispositivoModule } from './tipo-dispositivo/tipo-dispositivo.modul
 import { TrabajosModule } from './trabajos/trabajos.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UnidadModule } from './unidad/unidad.module';
+import { DepartamentoModule } from './departamento/departamento.module';
+import { DivisionModule } from './division/division.module';
 
 @Module({
   imports: [
@@ -39,7 +42,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TipoComponenteModule,
     PersonalModule,
     TipoDispositivoModule,
-    TrabajosModule],
+    TrabajosModule,
+    UnidadModule,
+    DepartamentoModule,
+    DivisionModule],
   controllers: [AppController],
   providers: [AppService],
 })
